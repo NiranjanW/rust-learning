@@ -1,9 +1,9 @@
 # [PROJECT_DIR]/Cargo.toml
 [workspace]
 members = ["sorting",
-"searching"
+"searching","vectors","fileparsing"
 ]
-resolver = "2"
+# resolver = "2"
 # [package]
 # name = "rust-learning"
 # version = "0.1.0"
