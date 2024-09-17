@@ -1,7 +1,9 @@
 # [PROJECT_DIR]/Cargo.toml
 [workspace]
 members = ["sorting",
-"searching","vectors","fileparsing"
+"searching","vectors","fileparsing","threadpool","rustfuture","rusttraits","guessing_game","rust-errors", "linkedlists",
+"json-serialize"
+
 ]
 # resolver = "2"
 # [package]
