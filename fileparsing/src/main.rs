@@ -1,4 +1,5 @@
-use std::fs::File;
+use std::io::Read;
+use std::{fs::File, io::BufRead};
 mod shape;
 
 // use stdio::prelude::*;
@@ -30,7 +31,14 @@ println!("(n)(n1)");
 
 let arry = [1,3,5,2,7];
 
-arry.iter().filter(|&&x| x >2).for_each(|&x| println!("{}",x))
+arry.iter().filter(|&&x| x >2).for_each(|&x| println!("{}",x));
+
+let v1 = vec![1,2,3,4,5];
+  let v2 = v1.iter().scan(0, |a, b|{
+    *a += b;
+    Some(*a)
+  }).collect::<Vec<_>>();
+  println!("{:?}", v2); // [1, 3, 6, 10, 15]
 
 }
 
@@ -73,4 +81,32 @@ fn gcd ( mut a : i32, mut b : i32) -> i32 {
         a = t;
     }
     a
+}
+
+fn file_read_fromstr () {
+    let txt :String = std::fs::read_to_string("test.txt").unwrap();
+    println!("{}", txt);
+}
+
+fn file_Read_buffer(){
+    let mut f = File::open("test.txt").unwrap();
+    let mut reader = std::io::BufReader::new(f);
+    for line in reader.lines() {
+        println!("{}", line.unwrap());
+    }
+    let mut buffer = Vec::new();
+    f.read_to_end(&mut buffer).unwrap();
+    match String::from_utf8(buffer) {
+        Ok(v) => println!("{}", v),
+        Err(e) => println!("Invalid UTF-8 sequence: {}", e),
+    }
+    println!("{}", buffer);
+}
+
+
+fn _read_stdin< R:BufRead> ( reader: &mut R)->String {
+    let mut buffer = String::new();
+    reader.read_line(&mut buffer).unwrap();
+    buffer.trim().to_string()
+
 }

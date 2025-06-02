@@ -39,4 +39,25 @@ fn vec_slice() {
     let v = vec![1,2,3,4,5];
     let slice = &v[1..4];
     println!("{:?}", slice);
-}   
+}  
+
+pub fn primes_up_to(upper_bound: u64) -> Vec<u64> {
+    let mut all_nums = (0..=upper_bound).collect::<Vec<u64>>();
+    all_nums[1]=0;
+    
+    let stop = (upper_bound as f64).sqrt() as usize + 1usize;
+    let upper_bound = upper_bound as usize;
+    
+    for i in 2..stop{
+        if all_nums[i] != 0{
+      // i is prime because it hasn't been marked as a multiple of any number
+            for idx in (i * i..=upper_bound).step_by(i){
+                all_nums[idx]=0
+            }
+        }
+    }
+    all_nums.iter().filter(|num| *num != &0u64).copied().collect()
+}
+
+
+

@@ -2,9 +2,9 @@
 [workspace]
 members = ["sorting",
 "searching","vectors","fileparsing","threadpool","rustfuture","rusttraits","guessing_game","rust-errors", "linkedlists",
-"json-serialize"
-
+"json-serialize" ,"rust-graph" , "rust-trees","concurrency" , "enum-example","ms-iterator"
 ]
+
 # resolver = "2"
 # [package]
 # name = "rust-learning"

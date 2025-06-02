@@ -3,17 +3,27 @@ struct Container(Vec<u64>);
 // struct Container {
 //     vec: Vec<u64>,
 // }
-
+use std::collections::BTreeMap;
 impl Container {
     fn get(&self, index: usize) -> &u64 {
         &self.0[index]
     }
 }
 
+
+fn transfor ( map: &BTreeMap<i32 , Vec<char>) -> BTreeMap<char , i32>{
+    let mut result:BTreeMap<char , i32> = BTreeMap::new();
+    for (key, values) in map {
+        for value in values {
+            result.insert(value.to_ascii_lowercase(), *key);
+        }
+    }
+    result
+}
 fn main() {
     let mut a = 5;
     let mut b = &a;
-    //  let c = &mut a;
+    /  l/et c = &mut a;
     let c = &mut b;
     **c += 1;
     println!("value {}  ", *c);
